@@ -1,0 +1,78 @@
+{
+  type: "object",
+  properties: {
+    spec: {
+      type: "string"
+    },
+    params: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          name: {
+            type: "string"
+          },
+          func: {
+            type: "string"
+          },
+          params: {
+            type: "object",
+            description: "if func is a callable that produces the actual ap function"
+          }
+        },
+        required: [
+          "name",
+          "func"
+        ]
+      }
+    },
+    terminate_on_fail: {
+      description: "End the episode immediately if the automaton becomes unsatisfiable",
+      type: "boolean",
+      default: true
+    },
+    termination_fail_reward: {
+      description: "Reward to give if the episode is ended through the automaton becomes unsatisfiable",
+      type: "number",
+      default: 0
+    },
+    terminate_on_accept: {
+      description: "End the episode immediately if the automaton goes into an accepting state (versus the environment ending the episode instead)",
+      type: "boolean",
+      default: false
+    },
+    termination_accept_reward: {
+      description: "Reward to give if the episode is ended by the automaton going into an accepting state",
+      type: "number",
+      default: 1
+    },
+    aut_stats_params: {
+      type: "object",
+      description: "Parameters to go into the automaton statistics",
+      properties: {
+        uct_numerator: {
+          description: "Provide a UCT bonus to infrequently visited automaton states",
+          oneOf: [
+            {
+              $comment: "Add (x / (n(s->s') + x))",
+              type: "number"
+            },
+            {
+              $comment: "Don't add it",
+              type: "null"
+            }
+          ]
+        }
+      }
+    }
+  },
+  required: [
+    "spec",
+    "params"
+  ],
+  dependencies: {
+    termination_accept_reward: [
+      "terminate_on_accept"
+    ]
+  }
+}

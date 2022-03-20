@@ -1,0 +1,31 @@
+{
+  type: "object",
+  properties: {
+    c_aut: {
+      description: "How much to weight the automaton lookahead value during action selection",
+      type: "number"
+    },
+    c_puct: {
+      description: "Weight for the prior probabilities (and a few things that we multiply them by)",
+      type: "number"
+    },
+    c_sigma: {
+      description: "Sigma as described in https://arxiv.org/pdf/1805.09218.pdf",
+      type: "number",
+      default: 1
+    },
+    c_intrins: {
+      description: "Weight for max-subtree intrinsic reward",
+      type: "number",
+      default: 1
+    },
+    batch_size: {
+      description: "Number of simulations to run per mini-batch",
+      type: "number"
+    },
+    num_batches: {
+      description: "Number of mini-batches to run",
+      type: "number"
+    }
+  }
+}

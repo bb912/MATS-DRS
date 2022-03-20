@@ -1,0 +1,105 @@
+{
+  automaton: {
+    spec: "(F W_tile) & (F X_tile) & (F Y_tile) & (F Z_tile)",
+    params: [
+      {
+        name: "W_tile",
+        func: "info_aut",
+        params: {
+          ap_name: "W"
+        }
+      },
+      {
+        name: "X_tile",
+        func: "info_aut",
+        params: {
+          ap_name: "X"
+        }
+      },
+      {
+        name: "Y_tile",
+        func: "info_aut",
+        params: {
+          ap_name: "Y"
+        }
+      },
+      {
+        name: "Z_tile",
+        func: "info_aut",
+        params: {
+          ap_name: "Z"
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    aut_stats_params: {
+      uct_numerator: 10
+    }
+  },
+  env: {
+    type: "minecraft",
+    max_episode_len: 40,
+    max_len_reward: 0,
+    params: {
+      initial_position: null,
+      placements: [
+        {
+          tile: {
+            ap_name: "W",
+            consumable: true,
+            grid_letter: "W",
+            inventory_modifier: {}
+          },
+          fixed_placements: [[9, 4]]
+        }, {
+          tile: {
+            ap_name: "X",
+            consumable: true,
+            grid_letter: "X",
+            inventory_modifier: {}
+          },
+          fixed_placements: [[2, 8]]
+        }, {
+          tile: {
+            ap_name: "Y",
+            consumable: true,
+            grid_letter: "Y",
+            inventory_modifier: {}
+          },
+          fixed_placements: [[4, 7]]
+        }, {
+          tile: {
+            ap_name: "Z",
+            consumable: true,
+            grid_letter: "Z",
+            inventory_modifier: {}
+          },
+          fixed_placements: [[2, 2]]
+        }
+      ],
+      shape: [10, 10],
+      inventory: []
+    }
+  },
+  discount: 1,
+  episode_runner: {
+    type: "mcts_aut_episode",
+    params: {
+      batch_size: 4,
+      num_batches: 20,
+      c_aut: 1,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 10000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "mine_mazenet_v1",
+    min_trace_to_train: 100
+  }
+}

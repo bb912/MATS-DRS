@@ -1,0 +1,36 @@
+{
+  automaton: {
+    spec: "true",
+    params: []
+  },
+  env: {
+    type: "gym",
+    max_episode_len: 1000,
+    params: {
+      id: "CartPole-v1"
+    }
+  },
+  discount: .98,
+  episode_runner: {
+    type: "aut_episode",
+    params: {
+      render_every_frame: true
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 1000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "basicnet",
+    min_trace_to_train: 10,
+    params: {
+      intermediate_size: 16
+    }
+  },
+  loss: {
+    type: "A2C",
+    params: {
+    }
+  }
+}

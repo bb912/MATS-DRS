@@ -1,0 +1,40 @@
+{
+  type: "object",
+  properties: {
+    type: {
+      type: "string",
+      enum: [
+        "A2C",
+        "PPO",
+        "MCTS"
+      ]
+    },
+    params: {
+      type: "object",
+      description: "PPO or MCTS parameters",
+      anyOf: [
+        {
+          properties: {
+            epsilon: {
+              type: "number"
+            },
+            sync_old_net_every: {
+              type: "integer"
+            }
+          }
+        },
+        {
+          properties: {
+            no_adv: {
+              description: "Train directly on the value as opposed to value + advantage",
+              type: "boolean"
+            }
+          }
+        }
+      ]
+    }
+  },
+  required: [
+    "type"
+  ]
+}

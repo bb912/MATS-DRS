@@ -1,0 +1,51 @@
+{
+  "automaton": {
+    "spec": "X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X((full_fuel)|(X(full_fuel)))))))))))))))))))))))))))))))))))))))& F(key) & (key -> F(goal))",
+    "description": "LTL_F[1:20](\"full_fuel\") + \"& F(key) & (key -> F(goal))\"",
+    "params": [
+      {
+        "name": "full_fuel",
+        "func": "full_fuel"
+      },
+      {
+        "name": "key",
+        "func": "key"
+      },
+      {
+        "name": "goal",
+        "func": "goal"
+      }
+    ]
+  },
+  "discount": 1,
+  "mcts": {
+    "c_aut": 0,
+    "c_puct": 1,
+    "batch_size": 4,
+    "num_batches": 50
+  },
+  "maze": {
+    "keys": 1,
+    "shape": [
+      10,
+      10
+    ],
+    "max_fuel_dist": 10,
+    "loop_factor": 0.3,
+    "random_seed": 12345,
+    "random_on_reset": true,
+    "max_episode_len": 500,
+    "fuel_cap": 20
+  },
+  "training": {
+    "learning_rate": 0.001,
+    "replay_buffer": 100000,
+    "min_trace_to_train": 100,
+    "train_rounds": 10,
+    "optimizer": "Adam"
+  },
+  "curiosity": {
+    "learning_rate": 0.0001,
+    "feature_space": 100
+  }
+}

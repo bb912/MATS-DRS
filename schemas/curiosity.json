@@ -1,0 +1,37 @@
+{
+  type: "object",
+  properties: {
+    learning_rate: {
+      description: "Optimizer learning rate for curiosity, should be lower than the normal one as curiosity is trained way more often (for each minibatch)",
+      type: "number"
+    },
+    feature_space: {
+      description: "Do not use, use type/params",
+      type: "integer"
+    },
+    type: {
+      description: "Architecture and state transformer for curiosity",
+      type: "string"
+    },
+    params: {
+      description: "Keyword arguments passed directly into constructor",
+      type: "object"
+    }
+  },
+  required: [
+    "learning_rate"
+  ],
+  oneOf: [
+    {
+      required: [
+        "feature_space"
+      ]
+    },
+    {
+      required: [
+        "type",
+        "params"
+      ]
+    }
+  ]
+}

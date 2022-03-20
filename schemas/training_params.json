@@ -1,0 +1,41 @@
+{
+  type: "object",
+  properties: {
+    learning_rate: {
+      description: "Passed into optimizer",
+      type: "number"
+    },
+    replay_buffer: {
+      description: "How many environment steps to keep in history",
+      type: "number"
+    },
+    min_trace_to_train: {
+      description: "Don't train before having a replay buffer this big. Also the size of the sample from the replay buffer",
+      type: "number"
+    },
+    train_rounds: {
+      description: "How many training rounds to perform for each episode",
+      type: "number"
+    },
+    optimizer: {
+      type: "string",
+      enum: [
+        "Adam",
+        "SGD"
+      ]
+    },
+    opt_params: {
+      description: "Passed directly into the optimizer as kwargs",
+      type: "object",
+      optional: true
+    },
+    network: {
+      description: "Network and state transformer to use",
+      type: "string"
+    },
+    params: {
+      description: "Passed into network constructor as kwargs",
+      type: "object"
+    }
+  }
+}

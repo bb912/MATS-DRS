@@ -1,0 +1,110 @@
+{
+  type: "object",
+  properties: {
+    automaton: {
+      description: "Configuration for the automaton reward shaping part",
+      $ref: "automaton.json"
+    },
+    discount: {
+      description: "Discount factor",
+      type: "number"
+    },
+    mcts: {
+      description: "Do not use, use episode_runner with mcts_aut instead",
+      $ref: "episode_runners/mcts_aut.json"
+    },
+    episode_runner: {
+      description: "The overall method for simulating an episode",
+      $ref: "episode_runner.json"
+    },
+    training: {
+      description: "How to train the agent after the episode ends",
+      $ref: "training_params.json"
+    },
+    curiosity: {
+      description: "How to reward the agent for unseen states (this property is optional)",
+      $ref: "curiosity.json"
+    },
+    maze: {
+      description: "Do not use, use env with maze instead",
+      $ref: "envs/maze.json",
+      properties: {
+        max_episode_len: {
+          type: "number"
+        }
+      }
+    },
+    env: {
+      $ref: "env.json"
+    },
+    loss: {
+      $ref: "loss.json"
+    },
+    transplant: {
+      type: "object",
+      description: "Automaton transfer learning",
+      properties: {
+        from: {
+          description: "path to an old checkpoint",
+          type: "string"
+        },
+        automaton: {
+          properties: {
+            type: {
+              description: "Construct a wrapper that anneals between the automaton from the old checkpoint and the newly constructed automaton",
+              type: "string",
+              enum: [
+                "Exponential",
+                "UCB"
+              ]
+            },
+            params: {
+              properties: {
+                rate: {
+                  description: "How fast to anneal between the old and new, depends on specific type",
+                  type: "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  required: [
+    "automaton",
+    "discount",
+    "training",
+  ],
+  allOf: [
+    {
+      oneOf: [
+        {
+          required: [
+            "maze"
+          ]
+        },
+        {
+          required: [
+            "env"
+          ]
+        }
+      ]
+    },
+    {
+      oneOf: [
+        {
+          required: [
+            "mcts"
+          ]
+        },
+        {
+          required: [
+            "episode_runner"
+          ]
+        }
+      ]
+    }
+  ],
+  additionalProperties: false
+}

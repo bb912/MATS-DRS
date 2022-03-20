@@ -1,0 +1,94 @@
+{
+automaton: {
+    spec: "F(wood_2 & at_home)",
+    spec1: "!(F(wood_2 & at_home))",
+    params: [
+      {
+        name: "at_home",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        name: "wood_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 2
+        }
+      },
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1
+  },
+  env: {
+    type: "minecraft",
+    max_episode_len: 200,
+    max_len_reward: 0,
+    params: {
+      num_agents: 2,
+      num_teams: 2,
+      init_positions: [[0, 0] , [9, 9]],
+      placements: [
+        {
+          tile: {
+            ap_name: "wood",
+            consumable: true,
+            grid_letter: "W",
+            inventory_modifier: {
+
+            }
+          },
+          fixed_placements: [[5, 5], [7, 9], [9 , 7]]
+        }
+      ],
+      inventories: {
+
+
+        a: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          }
+        ],
+        b: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          }
+        ]
+      },
+
+      shape: [
+        10,
+        10
+      ]
+    }
+  },
+  discount: 1,
+  episode_runner: {
+    type: "mcts_adv",
+    params: {
+      batch_size: 4,
+      num_batches: 20,
+      c_aut: 1,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 100000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "mine_mazenet_v1",
+    min_trace_to_train: 100
+  }
+}

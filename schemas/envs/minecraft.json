@@ -1,0 +1,119 @@
+{
+  type: "object",
+  properties: {
+    shape: {
+      $ref: "../lib/coordinate.json"
+    },
+    initial_position: {
+      description: "Start in a random position (null), or specify a starting coordinate",
+      oneOf: [
+        {
+          type: "null"
+        },
+        {
+          $ref: "../lib/coordinate.json"
+        }
+      ]
+    },
+    placements: {
+      type: "array",
+      items: {
+        $ref: "#/definitions/placement_config"
+      }
+    },
+    inventory: {
+      $ref: "#/definitions/inventory"
+    },
+  },
+  required: [
+    "shape",
+    "initial_position",
+    "placements",
+    "inventory"
+  ],
+  definitions: {
+    inventory: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          name: {
+            type: "string"
+          },
+          default_quantity: {
+            type: "integer"
+          },
+          capacity: {
+            description: "This is also used to determine the observation. \
+            For example, an item with an inventory of 1 and capacity of 2 will result in an observation of 1/2",
+            type: "integer"
+          }
+        }
+      }
+    },
+    placement_config: {
+      type: "object",
+      properties: {
+        fixed_placements: {
+          type: "array",
+          items: {
+            $ref: "../lib/coordinate.json"
+          }
+        },
+        random_placements: {
+          type: "number"
+        },
+        tile: {
+          $ref: "#/definitions/tile_type"
+        }
+      },
+      required: [
+        "tile"
+      ],
+      anyOf: [
+        {
+          required: [
+            "fixed_placements"
+          ]
+        },
+        {
+          required: [
+            "random_placements"
+          ]
+        }
+      ]
+    },
+    tile_type: {
+      type: "object",
+      properties: {
+        consumable: {
+          type: "boolean"
+        },
+        inventory_modifier: {
+          type: "object",
+          description: "A mapping of inventory item name -> how the items should change when this tile is used",
+          patternProperties: {
+            ".*": {
+              type: "integer"
+            }
+          }
+        },
+        ap_name: {
+          description: "The name that should appear in the info dict's ap when this tile is activated",
+          type: "string"
+        },
+        grid_letter: {
+          description: "What should be displayed on the grid in this spot",
+          type: "string",
+          minLength: 1,
+          maxLength: 1
+        },
+        wall: {
+          description: "Disallow the agent from moving onto this space",
+          type: "boolean",
+          default: false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,560 @@
+{
+automatons: [
+  {
+    spec: "G(!catch_side_Even) & G(wood_0 -> F(factory_0)) | G(wood_2 -> F(factory_2)) & (F(red_flag_0 & at_blue_0) | F(red_flag_2 & at_blue_2))",
+    params: [
+      {
+        name: "catch_side_Even",
+        func: "mine_catch_sides",
+        params: {
+          playersGettingCaught: [
+            0,
+            2
+          ],
+          dangerSide: "bottom",
+          shape: [
+            8,
+            8
+          ]
+        }
+      },
+      {
+        name: "at_blue_0",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "at_blue_2",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "red_flag_0",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "redFlag",
+          quantity: 1,
+          player: 0
+        },
+
+      },
+      {
+        name: "red_flag_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "redFlag",
+          quantity: 1,
+          player: 2
+        }
+      },
+      {
+        name: "factory_0",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 0
+        }
+      },
+      {
+        name: "factory_2",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 2
+        }
+      },
+      {
+        name: "wood_0",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 0
+        }
+      },
+      {
+        name: "wood_2",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a0"
+  },
+  {
+    spec: "G(!catch_side_Odd) & G(wood_1 -> F(factory_1)) | G(wood_3 -> F(factory_3)) & (F(blue_flag_1 & at_red_1) | F(blue_flag_3 & at_red_3))",
+    params: [
+      {
+        name: "catch_side_Odd",
+        func: "mine_catch_sides",
+        params: {
+          playersGettingCaught: [
+            1,
+            3
+          ],
+          dangerSide: "top",
+          shape: [
+            8,
+            8
+          ]
+        }
+      },
+      {
+        name: "at_red_1",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            7
+          ],
+          player: 1
+        }
+      },
+      {
+        name: "at_red_3",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            7
+          ],
+          player: 3
+        }
+      },
+      {
+        name: "blue_flag_1",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "blueFlag",
+          quantity: 1,
+          player: 1
+        }
+      },
+      {
+        name: "blue_flag_3",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "blueFlag",
+          quantity: 1,
+          player: 3
+        }
+      },
+      {
+        name: "factory_1",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 1
+        }
+      },
+      {
+        name: "factory_3",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 3
+        }
+      },
+      {
+        name: "wood_1",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 1
+        }
+      },
+      {
+        name: "wood_3",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 3
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a1"
+  },
+  {
+    spec: "G(!catch_side_Even) & G(wood_0 -> F(factory_0)) | G(wood_2 -> F(factory_2)) & (F(red_flag_0 & at_blue_0) | F(red_flag_2 & at_blue_2))",
+    params: [
+      {
+        name: "catch_side_Even",
+        func: "mine_catch_sides",
+        params: {
+          playersGettingCaught: [
+            0,
+            2
+          ],
+          dangerSide: "bottom",
+          shape: [
+            8,
+            8
+          ]
+        }
+      },
+      {
+        name: "at_blue_0",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "at_blue_2",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "red_flag_0",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "redFlag",
+          quantity: 1,
+          player: 0
+        },
+
+      },
+      {
+        name: "red_flag_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "redFlag",
+          quantity: 1,
+          player: 2
+        }
+      },
+      {
+        name: "factory_0",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 0
+        }
+      },
+      {
+        name: "factory_2",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 2
+        }
+      },
+      {
+        name: "wood_0",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 0
+        }
+      },
+      {
+        name: "wood_2",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a2"
+  },
+   {
+    spec: "G(!catch_side_Odd) & G(wood_1 -> F(factory_1)) | G(wood_3 -> F(factory_3)) & (F(blue_flag_1 & at_red_1) | F(blue_flag_3 & at_red_3))",
+    params: [
+      {
+        name: "catch_side_Odd",
+        func: "mine_catch_sides",
+        params: {
+          playersGettingCaught: [
+            1,
+            3
+          ],
+          dangerSide: "top",
+          shape: [
+            8,
+            8
+          ]
+        }
+      },
+      {
+        name: "at_red_1",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            7
+          ],
+          player: 1
+        }
+      },
+      {
+        name: "at_red_3",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            7
+          ],
+          player: 3
+        }
+      },
+      {
+        name: "blue_flag_1",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "blueFlag",
+          quantity: 1,
+          player: 1
+        }
+      },
+      {
+        name: "blue_flag_3",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "blueFlag",
+          quantity: 1,
+          player: 3
+        }
+      },
+      {
+        name: "factory_1",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 1
+        }
+      },
+      {
+        name: "factory_3",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 3
+        }
+      },
+      {
+        name: "wood_1",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 1
+        }
+      },
+      {
+        name: "wood_3",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 3
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a3"
+  }
+],
+  env: {
+    type: "minecraft",
+    max_episode_len: 800,
+    max_len_reward: 0,
+    params: {
+      num_agents: 4,
+      num_teams: 2,
+      init_positions: [[0, 0] , [7,7], [0, 1], [6,7]],
+      placements: [
+        {
+          tile: {
+            ap_name: "homeBlue",
+            consumable: false,
+            grid_letter: "B",
+            inventory_modifier: {
+              "blueFlag": +1
+            }
+          },
+          fixed_placements: [[0,0]]
+        },
+        {
+          tile: {
+            ap_name: "homeRed",
+            consumable: false,
+            grid_letter: "R",
+            inventory_modifier: {
+              "redFlag": +1
+            }
+          },
+          fixed_placements: [[0,7]]
+        },
+        {
+          tile: {
+            ap_name: "wood",
+            consumable: true,
+            grid_letter: "W",
+            inventory_modifier: {
+              "wood": +1
+            }
+          },
+          fixed_placements: [[7, 2], [6, 1], [6, 6],[7,5]]
+        },
+        {
+          tile: {
+            ap_name: "factory",
+            consumable: false,
+            grid_letter: "F",
+            inventory_modifier: {
+              "wood": -1,
+              "tool": +1
+            }
+          },
+          fixed_placements: [[1, 0], [1, 7]]
+        }
+      ],
+      inventories: {
+
+
+        a: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          },
+          {
+            name: "tool",
+            capacity: 3,
+            default_quantity: 0
+          },
+          {
+            name: "redFlag",
+            capacity: 1,
+            default_quantity: 0
+          },
+          {
+            name: "blueFlag",
+            capacity: 1,
+            default_quantity: 0
+          }
+        ],
+        b: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          },
+          {
+            name: "tool",
+            capacity: 3,
+            default_quantity: 0
+          },
+          {
+            name: "redFlag",
+            capacity: 1,
+            default_quantity: 0
+          },
+          {
+            name: "blueFlag",
+            capacity: 1,
+            default_quantity: 0
+          }
+        ],
+
+        c: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          },
+          {
+            name: "tool",
+            capacity: 3,
+            default_quantity: 0
+          },
+          {
+            name: "redFlag",
+            capacity: 1,
+            default_quantity: 0
+          },
+          {
+            name: "blueFlag",
+            capacity: 1,
+            default_quantity: 0
+          }
+        ],
+        d: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          },
+          {
+            name: "tool",
+            capacity: 3,
+            default_quantity: 0
+          },
+          {
+            name: "redFlag",
+            capacity: 1,
+            default_quantity: 0
+          },
+          {
+            name: "blueFlag",
+            capacity: 1,
+            default_quantity: 0
+          }
+        ]
+      },
+
+      shape: [
+        8,8
+      ]
+    }
+  },
+  discount: 1,
+  episode_runner: {
+    type: "mcts_adv",
+    params: {
+      batch_size: 4,
+      num_batches: 20,
+      c_aut: 1,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 100000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "mine_mazenet_v1",
+    min_trace_to_train: 100
+  }
+}

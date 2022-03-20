@@ -1,0 +1,42 @@
+{
+  type: "object",
+  properties: {
+    machines: {
+      description: "Run the script on multiple machines (or multiple times on the same machine). The script will be run as many times as specified in the command-line argument.",
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          host: {
+            description: "Or IP Address, will SSH into the machine",
+            type: "string"
+          },
+          device: {
+            description: "Passed as --device argument",
+            type: "string"
+          }
+        }
+      }
+    },
+    python: {
+      description: "Path to python executable",
+      type: "string"
+    },
+    script: {
+      description: "Path to the script that will be run",
+      type: "string"
+    },
+    args: {
+      description: "Arguments to pass into the script",
+      type: "string"
+    },
+    pythonpath: {
+      description: "The PYTHONPATH variable to use",
+      type: "string"
+    },
+    workdir: {
+      description: "working directory (will cd into this)",
+      type: "string"
+    }
+  }
+}

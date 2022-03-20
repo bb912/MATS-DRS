@@ -1,0 +1,337 @@
+{
+automatons: [
+  {
+    spec: "G(!catch0 & !catch2) & F((wood | wood2) & (goal0 | goal2))",
+    params: [
+      {
+        name: "goal0",
+        func: "mine_location",
+        params: {
+          location: [
+            5,5
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "goal2",
+        func: "mine_location",
+        params: {
+          location: [
+            5,5
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "catch0",
+        func: "mine_catch",
+        params: {
+          player: 0
+        }
+      },
+      {
+        name: "catch2",
+        func: "mine_catch",
+        params: {
+          player: 2
+        }
+      },
+      {
+        name: "wood",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 1,
+          player: 0
+        }
+      },
+      {
+        name: "wood2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 1,
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a0"
+  },
+  {
+    spec: "!(G(!catch0 & !catch2) & F((wood | wood2) & (goal0 | goal2))) & F(catch0 | catch2)",
+    params: [
+      {
+        name: "goal0",
+        func: "mine_location",
+        params: {
+          location: [
+            5,5
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "goal2",
+        func: "mine_location",
+        params: {
+          location: [
+            5,5
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "catch0",
+        func: "mine_catch",
+        params: {
+          player: 0
+        }
+      },
+      {
+        name: "catch2",
+        func: "mine_catch",
+        params: {
+          player: 2
+        }
+      },
+      {
+        name: "wood",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 1,
+          player: 0
+        }
+      },
+      {
+        name: "wood2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 1,
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a1"
+  },
+  {
+    spec: "G(!catch0 & !catch2) & F((wood | wood2) & (goal0 | goal2))",
+    params: [
+      {
+        name: "goal0",
+        func: "mine_location",
+        params: {
+          location: [
+            5,5
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "goal2",
+        func: "mine_location",
+        params: {
+          location: [
+            5,5
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "catch0",
+        func: "mine_catch",
+        params: {
+          player: 0
+        }
+      },
+      {
+        name: "catch2",
+        func: "mine_catch",
+        params: {
+          player: 2
+        }
+      },
+      {
+        name: "wood",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 1,
+          player: 0
+        }
+      },
+      {
+        name: "wood2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 1,
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a2"
+  },
+  {
+    spec: "!(G(!catch0 & !catch2) & F((wood | wood2) & (goal0 | goal2))) & F(catch0 | catch2)",
+    params: [
+      {
+        name: "goal0",
+        func: "mine_location",
+        params: {
+          location: [
+            5,5
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "goal2",
+        func: "mine_location",
+        params: {
+          location: [
+            5,5
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "catch0",
+        func: "mine_catch",
+        params: {
+          player: 0
+        }
+      },
+      {
+        name: "catch2",
+        func: "mine_catch",
+        params: {
+          player: 2
+        }
+      },
+      {
+        name: "wood",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 1,
+          player: 0
+        }
+      },
+      {
+        name: "wood2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 1,
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a3"
+  }
+    ],
+  env: {
+    type: "minecraft",
+    max_episode_len: 400,
+    max_len_reward: 0,
+    params: {
+      num_agents: 4,
+      num_teams: 2,
+      init_positions: [[0, 0] , [5,8], [0, 1], [4,8]],
+      placements: [
+        {
+          tile: {
+            ap_name: "goal0",
+            consumable: false,
+            grid_letter: "G",
+            inventory_modifier: {
+            }
+          },
+          fixed_placements: [[5,5]]
+        },
+        {
+          tile: {
+            ap_name: "wood",
+            consumable: true,
+            grid_letter: "W",
+            inventory_modifier: {
+              "wood": +1
+            }
+          },
+          fixed_placements: [[5, 0], [0,5]]
+        }
+      ],
+      inventories: {
+
+
+        a: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          }
+        ],
+        b: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          }
+        ],
+
+        c: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          }
+
+        ],
+        d: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          }
+
+        ]
+      },
+
+      shape: [
+        6,
+        9
+      ]
+    }
+  },
+  discount: 1,
+  episode_runner: {
+    type: "mcts_adv",
+    params: {
+      batch_size: 4,
+      num_batches: 20,
+      c_aut: 1,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 100000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "mine_mazenet_v1",
+    min_trace_to_train: 100
+  }
+}

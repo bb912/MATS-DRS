@@ -1,0 +1,40 @@
+{
+  "automaton": {
+    "spec": "F(key)",
+    "params": [
+      {
+        "name": "key",
+        "func": "key"
+      }
+    ]
+  },
+  "discount": 1,
+  "mcts": {
+    "c_aut": 1,
+    "c_puct": 1,
+    "c_intrins": 0,
+    "batch_size": 4,
+    "num_batches": 50
+  },
+  "maze": {
+    "keys": 1,
+    "shape": [
+      10,
+      10
+    ],
+    "max_fuel_dist": 10,
+    "loop_factor": 0.3,
+    "random_seed": 12345,
+    "random_on_reset": true,
+    "max_episode_len": 500,
+    "fuel_cap": 20
+  },
+  "training": {
+    "learning_rate": 0.001,
+    "replay_buffer": 100000,
+    "min_trace_to_train": 100,
+    "train_rounds": 10,
+    "optimizer": "Adam",
+    network: "no-op"
+  }
+}

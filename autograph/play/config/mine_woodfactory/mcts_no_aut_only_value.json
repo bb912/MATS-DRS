@@ -1,0 +1,102 @@
+{
+  automaton: {
+    spec: "F(has_tool & at_home)",
+    params: [
+      {
+        name: "at_home",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        name: "has_tool",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1
+  },
+  env: {
+    type: "minecraft",
+    max_episode_len: 100,
+    params: {
+      initial_position: [
+        0,
+        0
+      ],
+      placements: [
+        {
+          tile: {
+            ap_name: "wood",
+            consumable: true,
+            grid_letter: "W",
+            inventory_modifier: {
+              "wood": +1
+            }
+          },
+          random_placements: 2
+        },
+        {
+          tile: {
+            ap_name: "factory",
+            consumable: false,
+            grid_letter: "F",
+            inventory_modifier: {
+              "wood": -2,
+              "tool": +1
+            }
+          },
+          random_placements: 1
+        }
+      ],
+      inventory: [
+        {
+          name: "wood",
+          capacity: 2,
+          default_quantity: 0
+        },
+        {
+          name: "tool",
+          capacity: 1,
+          default_quantity: 0
+        }
+      ],
+      shape: [
+        10,
+        10
+      ]
+    }
+  },
+  discount: .99,
+  episode_runner: {
+    type: "mcts_aut_episode",
+    params: {
+      batch_size: 4,
+      num_batches: 50,
+      c_aut: 0,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 100000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "minenet_v1",
+    min_trace_to_train: 100,
+    params: {
+      num_blocks: 2,
+      disable_policy: true
+    }
+  }
+}

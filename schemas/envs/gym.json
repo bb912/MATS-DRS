@@ -1,0 +1,16 @@
+{
+  type: "object",
+  properties: {
+    id: {
+      description: "The name of the gym environment, like CartPole-v1 or MountainCar-v0",
+      type: "string"
+    },
+    kwargs: {
+      description: "Any arguments for the construction of the gym environment",
+      type: "object"
+    }
+  },
+  required: [
+    "id"
+  ]
+}

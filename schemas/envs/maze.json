@@ -1,0 +1,33 @@
+{
+  type: "object",
+  properties: {
+    keys: {
+      description: "How many keys are generated. Some code might have trouble if there is more than one.",
+      type: "number"
+    },
+    shape: {
+      description: "How large the environment should be.",
+      $ref: "../lib/coordinate.json"
+    },
+    max_fuel_dist: {
+      description: "Ensure that there is always a fuel available X steps or less away from every space",
+      type: "number"
+    },
+    loop_factor: {
+      description: "After generating the maze, remove X of the walls (between 0-1)",
+      type: "number"
+    },
+    random_seed: {
+      description: "Seed used to generate the maze",
+      type: "number"
+    },
+    random_on_reset: {
+      description: "Generate a new maze each episode or reuse the same maze",
+      type: "boolean"
+    },
+    fuel_cap: {
+      type: "number",
+      description: "The maximum amount of fuel the agent can have"
+    }
+  }
+}

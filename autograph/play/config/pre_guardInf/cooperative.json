@@ -1,0 +1,103 @@
+
+{
+automaton: {
+      specs: ["F(goal)","F(goal)"],
+        params: [
+          {
+            name: "goal",
+            func: "mine_location",
+            params: {
+              location: [
+                3,
+                1
+              ],
+              player:0
+            }
+          },
+        ],
+        terminate_on_accept: true,
+        termination_accept_reward: 1
+      },
+      env: {
+        type: "minecraft",
+        max_episode_len: 200,
+        max_len_reward: 0,
+        params: {
+          num_agents: 2,
+          num_teams: 2,
+          init_positions: [[0, 0] , [0,2]],
+          placements: [
+            {
+              tile: {
+                ap_name: "goal",
+                consumable: false,
+                grid_letter: "G",
+                inventory_modifier: {
+                }
+              },
+              fixed_placements: [[3,1]]
+            },
+            {
+                tile: {
+                    ap_name: "Obstacle",
+                    consumable: true,
+                    grid_letter: "*",
+                    inventory_modifier: {
+                    },
+                    wall: true
+                },
+                fixed_placements: [[0, 1], [1, 1], [1, 0]]
+            }
+
+          ],
+          inventories: {
+
+
+            a: [
+              {
+                name: "pickaxe",
+                capacity: 1,
+                default_quantity: 0
+              }
+
+
+            ],
+
+            b: [
+                {
+                    name: "pickaxe",
+                    capacity: 1,
+                    default_quantity: 1
+                }
+
+
+            ]
+          },
+
+          shape: [
+            4,
+            3
+          ]
+        }
+      },
+      discount: 1,
+      episode_runner: {
+        type: "mcts_adv",
+        params: {
+          batch_size: 4,
+          num_batches: 20,
+          c_aut: 1,
+          c_puct: 1,
+          c_sigma: 1,
+          c_intrins: 0
+        }
+      },
+      training: {
+        learning_rate: .001,
+        replay_buffer: 100000,
+        train_rounds: 10,
+        optimizer: "Adam",
+        network: "mine_mazenet_inv",
+        min_trace_to_train: 100
+      }
+}

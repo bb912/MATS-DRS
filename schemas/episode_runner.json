@@ -1,0 +1,41 @@
+{
+  type: "object",
+  properties: {
+    type: {
+      type: "string",
+      enum: [
+        "mcts_aut_episode",
+        "aut_episode"
+      ]
+    },
+    params: {
+      type: "object"
+    }
+  },
+  required: [
+    "type"
+  ],
+  allOf: [
+    {
+      if: {
+        properties: {
+          type: {
+            enum: [
+              "mcts_aut_episode"
+            ]
+          }
+        }
+      },
+      then: {
+        properties: {
+          params: {
+            $ref: "episode_runners/mcts_aut.json"
+          }
+        },
+        required: [
+          "params"
+        ]
+      }
+    }
+  ]
+}

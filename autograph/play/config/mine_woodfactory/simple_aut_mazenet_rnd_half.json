@@ -1,0 +1,121 @@
+{
+  automaton: {
+    spec: "F(wood_2 & F (factory & F(has_tool & at_home)))",
+    params: [
+      {
+        name: "at_home",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        name: "has_tool",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1
+        }
+      },
+      {
+        name: "factory",
+        func: "info_aut",
+        params: {
+          ap_name: "factory"
+        }
+      },
+      {
+        name: "wood_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "wood",
+          quantity: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1
+  },
+  env: {
+    type: "minecraft",
+    max_episode_len: 100,
+    max_len_reward: 0,
+    params: {
+      initial_position: [
+        0,
+        0
+      ],
+      placements: [
+        {
+          tile: {
+            ap_name: "wood",
+            consumable: true,
+            grid_letter: "W",
+            inventory_modifier: {
+              "wood": +1
+            }
+          },
+          random_placements: 2
+        },
+        {
+          tile: {
+            ap_name: "factory",
+            consumable: false,
+            grid_letter: "F",
+            inventory_modifier: {
+              "wood": -2,
+              "tool": +1
+            }
+          },
+          random_placements: 1
+        }
+      ],
+      inventory: [
+        {
+          name: "wood",
+          capacity: 2,
+          default_quantity: 0
+        },
+        {
+          name: "tool",
+          capacity: 1,
+          default_quantity: 0
+        }
+      ],
+      shape: [
+        10,
+        10
+      ]
+    }
+  },
+  discount: 1,
+  curiosity: {
+    type: "minernd_v1",
+    learning_rate: 0.0001,
+    params: {
+      feature_space: 32
+    }
+  },
+  episode_runner: {
+    type: "mcts_aut_episode",
+    params: {
+      batch_size: 4,
+      num_batches: 50,
+      c_aut: 1,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0.5
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 100000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "mine_mazenet_v1",
+    min_trace_to_train: 100
+  }
+}

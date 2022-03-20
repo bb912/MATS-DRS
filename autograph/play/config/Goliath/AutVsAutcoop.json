@@ -1,0 +1,267 @@
+{
+    automatons: [
+      {
+        spec: "F(a0w) & F(a2w) & F(a0g & a2g)",
+        params: [
+          {
+            name: "a0w",
+            func: "mine_inv_ratio",
+            params: {
+              inventory_item: "weapon",
+              quantity: 1,
+              player: 0
+            }
+          },
+          {
+            name: "a2w",
+            func: "mine_inv_ratio",
+            params: {
+              inventory_item: "weapon",
+              quantity: 1,
+              player: 2
+            }
+          },
+          {
+            name: "a0g",
+            func: "mine_found_by",
+            params: {
+              agent_to_find: 1,
+              found_by: 0
+            }
+          },
+          {
+            name: "a2g",
+            func: "mine_found_by",
+            params: {
+              agent_to_find: 1,
+              found_by: 2
+            }
+          }
+        ],
+        terminate_on_accept: true,
+        termination_accept_reward: 1,
+        termination_fail_reward: 0,
+        agents_following: [
+          0,
+          2
+        ],
+        checkpoint_postfix: "_glad",
+        no_aut_shape: false
+      },
+      {
+        spec: "F(X(a0 & X(a0 & X(a0)))) & F(X(a2 & X(a2 & X(a2))))",
+        params: [
+          {
+            name: "a0",
+            func: "mine_found_agents",
+            params: {
+              agents_must_be_found: [
+                0
+              ]
+            }
+          },
+          {
+            name: "a2",
+            func: "mine_found_agents",
+            params: {
+              agents_must_be_found: [
+                2
+              ]
+            }
+          }
+        ],
+        terminate_on_accept: true,
+        termination_accept_reward: 1,
+        termination_fail_reward: 0,
+        agents_following: [
+          1
+        ],
+        checkpoint_postfix: "_goliath",
+        no_aut_shape: false
+      },
+    ],
+    env: {
+      type: "minecraft",
+      max_episode_len: 500,
+      max_len_reward: 0,
+      params: {
+        num_agents: 3,
+        num_teams: 2,
+        partial_observability: false,
+        partial_distance: [
+          2,
+          3,
+          2
+        ],
+        init_positions: [
+          [
+            7,4
+          ],
+          [
+            4,4
+          ],
+          [
+            1,4
+          ]
+          
+        ],
+        init_directions: [
+          0,
+          3,
+          0
+        ],
+        init_teams: [
+          0,
+          1,
+          0
+        ],
+        placements: [
+          {
+            tile: {
+              ap_name: "System",
+              consumable: true,
+              grid_letter: "S",
+              inventory_modifier: {
+                "weapon": +1
+              },
+              wall: false
+            },
+            fixed_placements: [
+              [
+                4, 8
+              ],
+              [
+                9, 8
+              ]
+            ]
+          },
+          {
+            tile: {
+              ap_name: "Keycard",
+              consumable: true,
+              grid_letter: "k",
+              inventory_modifier: {
+                "keycard": +1
+              },
+              wall: false
+            },
+            fixed_placements: [
+              
+            ]
+          },
+          {
+            tile: {
+              ap_name: "Box",
+              consumable: true,
+              grid_letter: "B",
+              inventory_modifier: {
+                "box": +1
+              },
+              wall: true
+            },
+            fixed_placements: [
+              [
+                7, 7
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                3,
+                7
+              ],
+              [
+                8,
+                7
+              ],
+              [
+                9,
+                7
+              ],
+              [
+                3,
+                8
+              ],
+              [
+                3,
+                9
+              ],
+
+            ]
+          }
+        ],
+        inventories: {
+          a: [
+            {
+              name: "keycard",
+              capacity: 2,
+              default_quantity: 2
+            },
+            {
+              name: "box",
+              capacity: 4,
+              default_quantity: 0
+            },
+            {
+              name: "weapon",
+              capacity: 1,
+              default_quantity: 1
+            }
+          ],
+          b: [
+
+          ],
+          c: [
+            {
+              name: "keycard",
+              capacity: 2,
+              default_quantity: 2
+            },
+            {
+              name: "box",
+              capacity: 4,
+              default_quantity: 0
+            },
+            {
+              name: "weapon",
+              capacity: 1,
+              default_quantity: 1
+            }
+          ]
+        },
+        shape: [
+          10,
+          10
+        ]
+      }
+    },
+    discount: 0.99,
+    episode_runner: {
+      type: "mcts_team",
+      params: {
+        batch_size: 4,
+        num_batches: 20,
+        c_aut: 1,
+        c_puct: 1,
+        c_sigma: 1,
+        c_intrins: 0
+      }
+    },
+    training: {
+      learning_rate: .001,
+      replay_buffer: 100000,
+      train_rounds: 10,
+      optimizer: "Adam",
+      network: "mine-mazenet-dirs",
+      min_trace_to_train: 100
+    }
+  }

@@ -1,0 +1,449 @@
+{
+automatons: [
+  {
+    spec: "G(wood -> F(factory)) & G(wood_2 -> F(factory_2)) & F(tool_3_0 & at_home_0) & F(tool_3_2 & at_home_2)",
+    params: [
+      {
+        name: "at_home_0",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "at_home_2",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "tool_3_0",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1,
+          player: 0
+        },
+
+      },
+      {
+        name: "tool_3_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1,
+          player: 2
+        }
+      },
+      {
+        name: "factory",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 0
+        }
+      },
+      {
+        name: "factory_2",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 2
+        }
+      },
+      {
+        name: "wood",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 0
+        }
+      },
+      {
+        name: "wood_2",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a0"
+  },
+  {
+    spec: "!(G(wood -> F(factory)) & G(wood_2 -> F(factory_2)) & F(tool_3_0 & at_home_0) & F(tool_3_2 & at_home_2))",
+    params: [
+      {
+        name: "at_home_0",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "at_home_2",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "tool_3_0",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1,
+          player: 0
+        }
+      },
+      {
+        name: "tool_3_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1,
+          player: 2
+        }
+      },
+      {
+        name: "factory",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 0
+        }
+      },
+      {
+        name: "factory_2",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 2
+        }
+      },
+      {
+        name: "wood",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 0
+        }
+      },
+      {
+        name: "wood_2",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: false,
+    termination_accept_reward: 1,
+    agent_postfix: "a1"
+  },
+  {
+    spec: "G(wood -> F(factory)) & G(wood_2 -> F(factory_2)) & F(tool_3_0 & at_home_0) & F(tool_3_2 & at_home_2)",
+    params: [
+      {
+        name: "at_home_0",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "at_home_2",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "tool_3_0",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1,
+          player: 0
+        }
+      },
+      {
+        name: "tool_3_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1,
+          player: 2
+        }
+      },
+      {
+        name: "factory",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 0
+        }
+      },
+      {
+        name: "factory_2",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 2
+        }
+      },
+      {
+        name: "wood",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 0
+        }
+      },
+      {
+        name: "wood_2",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1,
+    agent_postfix: "a2"
+  },
+   {
+    spec: "!(G(wood -> F(factory)) & G(wood_2 -> F(factory_2)) & F(tool_3_0 & at_home_0) & F(tool_3_2 & at_home_2))",
+    params: [
+      {
+        name: "at_home_0",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "at_home_2",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ],
+          player: 2
+        }
+      },
+      {
+        name: "tool_3_0",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1,
+          player: 0
+        }
+      },
+      {
+        name: "tool_3_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1,
+          player: 2
+        }
+      },
+      {
+        name: "factory",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 0
+        }
+      },
+      {
+        name: "factory_2",
+        func: "info_aut",
+        params: {
+          ap_name: "factory",
+          player: 2
+        }
+      },
+      {
+        name: "wood",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 0
+        }
+      },
+      {
+        name: "wood_2",
+        func: "info_aut",
+        params: {
+          ap_name: "wood",
+          player: 2
+        }
+      }
+    ],
+    terminate_on_accept: false,
+    termination_accept_reward: 1,
+    agent_postfix: "a3"
+  }
+],
+  env: {
+    type: "minecraft",
+    max_episode_len: 800,
+    max_len_reward: 0,
+    params: {
+      num_agents: 4,
+      num_teams: 2,
+      init_positions: [[0, 0] , [7,7], [0, 1], [6,7]],
+      placements: [
+        {
+          tile: {
+            ap_name: "at_home_0",
+            consumable: false,
+            grid_letter: "H",
+            inventory_modifier: {
+            }
+          },
+          fixed_placements: [[0,0]]
+        },
+        {
+          tile: {
+            ap_name: "wood",
+            consumable: true,
+            grid_letter: "W",
+            inventory_modifier: {
+              "wood": +1
+            }
+          },
+          random_placements: 6
+        },
+        {
+          tile: {
+            ap_name: "factory",
+            consumable: false,
+            grid_letter: "F",
+            inventory_modifier: {
+              "wood": -1,
+              "tool": +1
+            }
+          },
+          random_placements: 2
+        }
+      ],
+      inventories: {
+
+
+        a: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          },
+          {
+          name: "tool",
+          capacity: 3,
+          default_quantity: 0
+        }
+        ],
+        b: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          },
+          {
+          name: "tool",
+          capacity: 3,
+          default_quantity: 0
+        }
+        ],
+
+        c: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          },
+          {
+          name: "tool",
+          capacity: 3,
+          default_quantity: 0
+        }
+
+        ],
+        d: [
+          {
+            name: "wood",
+            capacity: 2,
+            default_quantity: 0
+          },
+          {
+          name: "tool",
+          capacity: 3,
+          default_quantity: 0
+        }
+
+        ]
+      },
+
+      shape: [
+        8,8
+      ]
+    }
+  },
+  discount: 1,
+  episode_runner: {
+    type: "mcts_adv",
+    params: {
+      batch_size: 4,
+      num_batches: 20,
+      c_aut: 1,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 100000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "mine_mazenet_v1",
+    min_trace_to_train: 100
+  }
+}

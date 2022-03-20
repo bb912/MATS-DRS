@@ -1,0 +1,87 @@
+{
+automaton: {
+    specs: ["G(!catch) & F(goal)",
+      "!(G(!catch) & F(goal))"
+    ],
+    params: [
+      {
+        name: "goal",
+        func: "mine_location",
+        params: {
+          location: [
+            2,2
+          ],
+          player: 0
+        }
+      },
+      {
+        name: "catch",
+        func: "mine_catch",
+        params: {
+          players: [
+            0, 1
+          ]
+        }
+      },
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1
+  },
+  env: {
+    type: "minecraft",
+    max_episode_len: 200,
+    max_len_reward: 0,
+    params: {
+      num_agents: 2,
+      num_teams: 2,
+      init_positions: [[2,0] , [2,4]],
+      placements: [
+        {
+          tile: {
+            ap_name: "goal",
+            consumable: false,
+            grid_letter: "G",
+            inventory_modifier: {
+            }
+          },
+          fixed_placements: [[2,2]]
+        }
+      ],
+      inventories: {
+
+
+        a: [
+
+        ],
+
+        b: [
+
+        ]
+      },
+
+      shape: [
+        5,5
+      ]
+    }
+  },
+  discount: 1,
+  episode_runner: {
+    type: "mcts_adv",
+    params: {
+      batch_size: 4,
+      num_batches: 20,
+      c_aut: 1,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 100000,
+    train_rounds: 10,
+    optimizer: "Adam",
+    network: "mine_mazenet_v1",
+    min_trace_to_train: 4
+  }
+}

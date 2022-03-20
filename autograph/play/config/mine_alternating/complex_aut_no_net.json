@@ -1,0 +1,125 @@
+{
+  automaton: {
+    spec: "F(tool_1) & F(tool_2) & F(wood) & G(wood -> F(factory)) & F(tool_3 & at_home)",
+    params: [
+      {
+        name: "at_home",
+        func: "mine_location",
+        params: {
+          location: [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        name: "tool_1",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 1
+        }
+      },
+      {
+        name: "tool_2",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 2
+        }
+      },
+      {
+        name: "tool_3",
+        func: "mine_inventory",
+        params: {
+          inventory_item: "tool",
+          quantity: 3
+        }
+      },
+      {
+        name: "factory",
+        func: "info_aut",
+        params: {
+          ap_name: "factory"
+        }
+      },
+      {
+        name: "wood",
+        func: "info_aut",
+        params: {
+          ap_name: "wood"
+        }
+      }
+    ],
+    terminate_on_accept: true,
+    termination_accept_reward: 1
+  },
+  env: {
+    type: "minecraft",
+    max_episode_len: 100,
+    params: {
+      initial_position: null,
+      placements: [
+        {
+          tile: {
+            ap_name: "wood",
+            consumable: true,
+            grid_letter: "W",
+            inventory_modifier: {
+              "wood": +1
+            }
+          },
+          random_placements: 3
+        },
+        {
+          tile: {
+            ap_name: "factory",
+            consumable: false,
+            grid_letter: "F",
+            inventory_modifier: {
+              "wood": -1,
+              "tool": +1
+            }
+          },
+          random_placements: 1
+        }
+      ],
+      inventory: [
+        {
+          name: "wood",
+          capacity: 2,
+          default_quantity: 0
+        },
+        {
+          name: "tool",
+          capacity: 3,
+          default_quantity: 0
+        }
+      ],
+      shape: [
+        10,
+        10
+      ]
+    }
+  },
+  discount: 1,
+  episode_runner: {
+    type: "mcts_aut_episode",
+    params: {
+      batch_size: 4,
+      num_batches: 50,
+      c_aut: 1,
+      c_puct: 1,
+      c_sigma: 1,
+      c_intrins: 0
+    }
+  },
+  training: {
+    learning_rate: .001,
+    replay_buffer: 100000,
+    train_rounds: 0,
+    optimizer: "Adam",
+    network: "no-op",
+    min_trace_to_train: 100
+  }
+}
