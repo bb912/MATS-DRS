@@ -19,7 +19,7 @@ pip install torch==1.2.0 torchvision==0.4.0 -f https://download.pytorch.org/whl/
 
 ### Running homogenous competitive experiments:
 
-#####Script Template:
+##### Script Template:
 - `python autograph/play/maze_nn_aut_adv_team_share.py 
 --workers N 
 --device cpu/cuda:N 
@@ -85,22 +85,22 @@ config/guardInf/newActions/full_500_Auts_10by10.json`
 ### General Tips    
 
 
-#####After every restart: 
+##### After every restart: 
 	- open cmd
 	- change directory to the code directory
 	- run: "export PYTHONPATH=."
 
-#####For every run: 
+##### For every run: 
 	- check/change checkpoints filenames if swapping
 	- events logs for tensorboard
 
-#####To use tensorboard:
+##### To use tensorboard:
 	- open cmd
 	- change directory to the event log path: path\to\tensorboard\log\folder
 	- run: "tensorboard --logdir ."
 	- copy the link in cmd and use a browser to see the progress
 
-#####Parameters for JSON defines:
+##### Parameters for JSON defines:
 	- LTLf formula for each team: 
 	spec: "G(wood -> F(factory)) & F(tool_3 & at_home)",
 	
@@ -112,11 +112,11 @@ config/guardInf/newActions/full_500_Auts_10by10.json`
 	- CNN training parameters
 
 
-#####The way to call variables from the JSON is by using config, for example:
+##### Get variables from the JSON by using config, for example:
 	- in maze_nn_aut.py: env = config["env"]
 
-#####MATS expansions take place in mcts_aut_adv_team.py, 
-#####class: MCTSAutAdvList, with functions: 
+##### MATS expansions take place in mcts_aut_adv_team.py, 
+##### class: MCTSAutAdvList, with functions: 
 	- pick_action --> pi_tree
 	- find_leaf   --> stacks up training examples(for CNN) in variable turns
 	              --> This happens num_batches * batch_size times (20*4 = 80 in our case).
